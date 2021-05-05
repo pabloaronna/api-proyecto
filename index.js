@@ -24,11 +24,14 @@ db.sequelize.sync(              ).then((result) => {
     console.log("ERROR DB al sincronizar");
   });
 
+// MIDDLEWARE
+const auth = require('./middleware/auth'); 
+
 // RUTAS
 const UsuarioRoutes = require("./routes/usuario.routes");
 const RolRoutes = require("./routes/rol.routes");
 app.use('/usuario', UsuarioRoutes);
-app.use('/rol', RolRoutes);
+app.use('/rol', auth, RolRoutes);
 
 
 const PORT = process.env.PORT || 3000;

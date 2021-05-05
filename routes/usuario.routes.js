@@ -1,15 +1,16 @@
 const express = require('express');
+const auth = require('../middleware/auth');
 const UsuarioRoutes = express.Router();
 
 const UsuarioController = require('../controllers/usuario.controller');
 
-UsuarioRoutes.get('/', UsuarioController.principal );
-UsuarioRoutes.get('/buscar', UsuarioController.buscar );
+// de acceso privado
+UsuarioRoutes.get('/', auth, UsuarioController.principal );
+UsuarioRoutes.get('/buscar', auth, UsuarioController.buscar );
 
+// de acceso publico
 UsuarioRoutes.post('/registro',  UsuarioController.registro );
 UsuarioRoutes.post('/login',  UsuarioController.login );
-
-
 
 
 module.exports = UsuarioRoutes;

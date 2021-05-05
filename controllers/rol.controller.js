@@ -21,8 +21,9 @@ exports.principal = (req, res) => {
 };
 
 exports.buscar = (req, res) => {
+
   const key = req.params.key;
-  const value = req.params.value;
+  const value = req.params.value;   
 
   db.Rol.findAll({
     attributes: ["id", "nombre", "codigo"],
